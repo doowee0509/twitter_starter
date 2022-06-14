@@ -5,7 +5,6 @@ import "./Feed.css"
 
 export default function Feed(props) {
   const tweets = props.tweets
-  console.log(tweets)
   return (
     <div className="col feed">
       {/* UPDATE TWEET BOX PROPS HERE */}

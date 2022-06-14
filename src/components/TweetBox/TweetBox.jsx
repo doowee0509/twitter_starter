@@ -3,6 +3,18 @@ import TweetInput from "./TweetInput"
 import "./TweetBox.css"
 
 export default function TweetBox(props) {
+  console.log(props.userProfile)
+  const handleOnSubmit = () => {
+    const newTweet = {
+      name: props.userProfile ? props.userProfile.name : null,
+      handle: props.userProfile ? props.userProfile.handle : null,
+      text: "",
+      comments: 0,
+      retweets: 0,
+      likes: 0,
+    }
+    props.setTweets((prevTweets) => [...prevTweets, {...newTweet, id: prevTweets.length}])
+  }
   return (
     <div className="tweet-box">
       <TweetInput />
@@ -10,7 +22,7 @@ export default function TweetBox(props) {
       <div className="tweet-box-footer">
         <TweetBoxIcons />
         <TweetCharacterCount props={props}/>
-        <TweetSubmitButton />
+        <TweetSubmitButton handleOnSubmit={handleOnSubmit}/>
       </div>
     </div>
   )
@@ -33,11 +45,11 @@ export function TweetCharacterCount(props) {
   return <span></span>
 }
 
-export function TweetSubmitButton() {
+export function TweetSubmitButton(props) {
   return (
     <div className="tweet-submit">
       <i className="fas fa-plus-circle"></i>
-      <button className="tweet-submit-button">Tweet</button>
+      <button className="tweet-submit-button" onClick={props.handleOnSubmit}>Tweet</button>
     </div>
   )
 }
