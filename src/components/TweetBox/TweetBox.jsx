@@ -9,7 +9,7 @@ export default function TweetBox(props) {
 
       <div className="tweet-box-footer">
         <TweetBoxIcons />
-        <TweetCharacterCount />
+        <TweetCharacterCount props={props}/>
         <TweetSubmitButton />
       </div>
     </div>
@@ -29,6 +29,7 @@ export function TweetBoxIcons() {
 
 export function TweetCharacterCount(props) {
   // ADD CODE HERE
+  console.log(props.props.tweets)
   return <span></span>
 }
 
