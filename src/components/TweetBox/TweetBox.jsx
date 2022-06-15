@@ -9,6 +9,12 @@ export default function TweetBox(props) {
     props.setTweetText(e.target.value)
   }
   const handleOnSubmit = () => {
+    // var textInput = props.tweetText
+    // textInput = textInput.replace(/(#\w+)/g, <span className="blue">$1</span>)
+    // textInput = textInput.replace(/-[0-9]+x[0-9]+\./i, '<span>$1</span>');
+    // var arr = textInput.match(/(#\w+)/g)
+    // console.log(textInput)
+    console.log(props.userProfile)
     const newTweet = {
       name: props.userProfile ? props.userProfile.name : "",
       handle: props.userProfile ? props.userProfile.handle : "",
@@ -24,9 +30,9 @@ export default function TweetBox(props) {
     })
 
     props.setTweetText("")
-    // props.setUserProfile({...props.userProfile, numTweets: props.userProfile.numTweets + 1})
+    props.userProfile.numTweets += 1
 
-    // console.log(props.userProfile)
+    console.log(props.userProfile)
   }
   return (
     <div className="tweet-box">
