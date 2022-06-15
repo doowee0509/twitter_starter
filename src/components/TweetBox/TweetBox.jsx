@@ -8,7 +8,6 @@ export default function TweetBox(props) {
   const handleOnTweetTextChange = (e) => {
     props.setTweetText(e.target.value)
   }
-
   const handleOnSubmit = () => {
     const newTweet = {
       name: props.userProfile ? props.userProfile.name : "",
@@ -25,6 +24,9 @@ export default function TweetBox(props) {
     })
 
     props.setTweetText("")
+    // props.setUserProfile({...props.userProfile, numTweets: props.userProfile.numTweets + 1})
+
+    // console.log(props.userProfile)
   }
   return (
     <div className="tweet-box">
@@ -52,9 +54,8 @@ export function TweetBoxIcons() {
 
 export function TweetCharacterCount(props) {
   // ADD CODE HERE
-  // console.log(props.tweetText)
   var charLeft = 140 - props.tweetText.length
-  return <span>{charLeft === 140 ? null : charLeft}</span>
+  return <span className={charLeft < 0 ? "tweet-length red" : "tweet-length"}>{charLeft === 140 ? null : charLeft}</span>
 }
 
 export function TweetSubmitButton(props) {

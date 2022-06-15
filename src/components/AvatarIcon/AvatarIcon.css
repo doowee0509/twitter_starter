@@ -1,5 +1,10 @@
 .avatar-icon {
   display: flex;
+  background-image: url(src/assets/pfp.jpeg);
+  background-size: 35px 35px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 .avatar-icon i.fa-circle {
   color: var(--twitter-mid-gray);
@@ -14,4 +19,5 @@
   color: var(--twitter-dark-gray);
   font-size: 24px;
   transform: translateY(6px);
+  
 }
