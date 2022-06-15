@@ -4,7 +4,8 @@ import { formatLikes } from "../../utils/format"
 import "./Tweet.css"
 
 export default function Tweet({ tweet }) {
-  // console.log(tweet.text)git 
+  const [likesCount, setLikesCount] = React.useState(tweet.likes)
+  console.log(tweet)
   return (
     <div className="tweet" data-tweet-id={tweet.id}>
       <div className="tweet-avatar">
@@ -14,7 +15,7 @@ export default function Tweet({ tweet }) {
       <div className="tweet-content">
         <TweetUserInfo name={tweet.name}handle={tweet.handle}/>
         <p className="tweet-text">{tweet.text}</p>
-        <TweetFooter numComments={tweet.comments} numRetweets={tweet.retweets} numLikes={tweet.likes}/>
+        <TweetFooter numComments={tweet.comments} numRetweets={tweet.retweets} numLikes={likesCount} setLikesCount={setLikesCount}/>
       </div>
     </div>
   )
@@ -34,7 +35,7 @@ export function TweetUserInfo({ name, handle }) {
   )
 }
 
-export function TweetFooter({ numComments, numRetweets, numLikes }) {
+export function TweetFooter({ numComments, numRetweets, numLikes, setLikesCount }) {
   return (
     <div className="tweet-footer">
       <span>
@@ -46,7 +47,7 @@ export function TweetFooter({ numComments, numRetweets, numLikes }) {
         {numRetweets || 0}
       </span>
       <span>
-        <i className="fas fa-heart"></i>
+        <i className="fas fa-heart" onClick={() => setLikesCount(numLikes + 1)}></i>
         {formatLikes(numLikes ?? 0)}
       </span>
       <span>
