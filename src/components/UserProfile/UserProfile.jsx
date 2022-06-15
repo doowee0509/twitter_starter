@@ -18,9 +18,9 @@ export function CardContent(props) {
   return (
     <div className="card-content">
       <span className="fa-stack add-picture-icon">
-        <i className="fas fa-camera fa-stack-2x">
+        {/* <i className="fas fa-camera fa-stack-2x">
           <i className="fas fa-plus fa-stack-1x"></i>
-        </i>
+        </i> */}
       </span>
       <div className="twitter-handle">
         <h3>{props.name}</h3>
@@ -35,8 +35,10 @@ export function CardFooter(props) {
     <div className="card-footer">
       <p>Tweets</p>
       <p>Followers</p>
+      <p>Following</p>
       <span className="metric">{props.numTweets ? formatNumTweets(props.numTweets) : null}</span>
       <span className="metric">{props.numFollowers ? formatNumFollowers(props.numFollowers) : null}</span>
+      <span className="metric">1m</span>
     </div>
   )
 }

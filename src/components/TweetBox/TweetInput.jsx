@@ -6,7 +6,7 @@ export default function TweetInput(props) {
     <div className="tweet-textarea">
       <AvatarIcon />
 
-      <textarea name="new-tweet-input" type="text" placeholder="What's Happening?" onChange={props.handleOnChange} value={props.value}>{props.value}</textarea>
+      <textarea className={props.expand ? "expanded" : ""} name="new-tweet-input" type="text" placeholder="What's Happening?" onChange={props.handleOnChange} value={props.value} onFocus={(e) => props.setFocus(true)} onBlur={(e) => props.setFocus(false)}>{props.value} </textarea>
 
       <SmileIcon />
     </div>

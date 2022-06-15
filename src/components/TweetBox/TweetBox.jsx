@@ -3,7 +3,8 @@ import TweetInput from "./TweetInput"
 import "./TweetBox.css"
 
 export default function TweetBox(props) {
-  console.log(props.tweetText)
+  const [focus, setFocus] = React.useState(false)
+  
   const handleOnTweetTextChange = (e) => {
     props.setTweetText(e.target.value)
   }
@@ -17,12 +18,17 @@ export default function TweetBox(props) {
       retweets: 0,
       likes: 0,
     }
-    props.setTweets((prevTweets) => [...prevTweets, { ...newTweet, id: prevTweets.length}])
+
+    props.setTweets((prevTweets) => {
+      const tweetsArray =  [...prevTweets, { ...newTweet, id: prevTweets.length}]
+      return tweetsArray
+    })
+
     props.setTweetText("")
   }
   return (
     <div className="tweet-box">
-      <TweetInput value={props.tweetText} handleOnChange={handleOnTweetTextChange}/>
+      <TweetInput value={props.tweetText} handleOnChange={handleOnTweetTextChange} expand={focus || props.tweetText.length} setFocus={setFocus}/>
 
       <div className="tweet-box-footer">
         <TweetBoxIcons />
