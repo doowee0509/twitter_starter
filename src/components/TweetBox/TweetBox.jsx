@@ -3,26 +3,31 @@ import TweetInput from "./TweetInput"
 import "./TweetBox.css"
 
 export default function TweetBox(props) {
-  console.log(props.userProfile)
+  console.log(props.tweetText)
+  const handleOnTweetTextChange = (e) => {
+    props.setTweetText(e.target.value)
+  }
+
   const handleOnSubmit = () => {
     const newTweet = {
-      name: props.userProfile ? props.userProfile.name : null,
-      handle: props.userProfile ? props.userProfile.handle : null,
-      text: "",
+      name: props.userProfile ? props.userProfile.name : "",
+      handle: props.userProfile ? props.userProfile.handle : "",
+      text: props.tweetText,
       comments: 0,
       retweets: 0,
       likes: 0,
     }
-    props.setTweets((prevTweets) => [...prevTweets, {...newTweet, id: prevTweets.length}])
+    props.setTweets((prevTweets) => [...prevTweets, { ...newTweet, id: prevTweets.length}])
+    props.setTweetText("")
   }
   return (
     <div className="tweet-box">
-      <TweetInput />
+      <TweetInput value={props.tweetText} handleOnChange={handleOnTweetTextChange}/>
 
       <div className="tweet-box-footer">
         <TweetBoxIcons />
-        <TweetCharacterCount props={props}/>
-        <TweetSubmitButton handleOnSubmit={handleOnSubmit}/>
+        <TweetCharacterCount tweetText={props.tweetText}/>
+        <TweetSubmitButton disabled={props.tweetText.length === 0 || props.tweetText.length > 140} handleOnSubmit={handleOnSubmit}/>
       </div>
     </div>
   )
@@ -41,15 +46,16 @@ export function TweetBoxIcons() {
 
 export function TweetCharacterCount(props) {
   // ADD CODE HERE
-  console.log(props.props.tweets)
-  return <span></span>
+  // console.log(props.tweetText)
+  var charLeft = 140 - props.tweetText.length
+  return <span>{charLeft === 140 ? null : charLeft}</span>
 }
 
 export function TweetSubmitButton(props) {
   return (
     <div className="tweet-submit">
       <i className="fas fa-plus-circle"></i>
-      <button className="tweet-submit-button" onClick={props.handleOnSubmit}>Tweet</button>
+      <button className="tweet-submit-button" disabled={props.disabled} onClick={props.handleOnSubmit}>Tweet</button>
     </div>
   )
 }
