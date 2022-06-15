@@ -25,6 +25,7 @@ export function CardContent(props) {
       <div className="twitter-handle">
         <h3>{props.name}</h3>
         <p>@{props.handle}</p>
+        <p>Never gonna give you up!</p>
       </div>
     </div>
   )
@@ -39,6 +40,7 @@ export function CardFooter(props) {
       <span className="metric">{props.numTweets ? formatNumTweets(props.numTweets) : null}</span>
       <span className="metric">{props.numFollowers ? formatNumFollowers(props.numFollowers) : null}</span>
       <span className="metric">1m</span>
+
     </div>
   )
 }
